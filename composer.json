@@ -1,0 +1,15 @@
+{
+    "name": "jhordan.suzuki/php-api",
+    "autoload": {
+        "psr-4": {
+            "JhordanSuzuki\\PhpApi\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Jhordan S",
+            "email": "jhordan.kendy@outlook.com"
+        }
+    ],
+    "require": {}
+}
