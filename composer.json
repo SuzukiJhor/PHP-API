@@ -3,7 +3,10 @@
     "autoload": {
         "psr-4": {
             "JhordanSuzuki\\PhpApi\\": "src/"
-        }
+        },
+        "files":[
+            "config.php"
+        ]
     },
     "authors": [
         {
