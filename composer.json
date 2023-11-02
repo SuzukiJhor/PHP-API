@@ -2,7 +2,7 @@
     "name": "jhordan.suzuki/php-api",
     "autoload": {
         "psr-4": {
-            "JhordanSuzuki\\PhpApi\\": "src/"
+            "App\\  ": "src/"
         },
         "files":[
             "config.php"
