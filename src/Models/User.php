@@ -28,4 +28,14 @@ class User
             throw new \Exception('Nenhum usuário encontrado');
         }
     }
+
+    public function getUserAll()
+    {
+        try {
+            $db = new \PDO(DBDRIVE.":host=".DBHOST.";dbname=".DBNAME, DBUSER, DBPASS);
+            $db->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
+        } catch (\PDOException $err) {
+            echo $err->getMessage();
+        }
+    }
 }
