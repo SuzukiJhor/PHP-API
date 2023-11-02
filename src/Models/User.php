@@ -2,7 +2,9 @@
 
 namespace App\Models;
 
-use Exception;
+use App\Services\Connection;
+
+
 
 class User 
 {
@@ -10,12 +12,11 @@ class User
 
     public static function getUser(Int $id)
     {
-        try {
-            $db = new \PDO(DBDRIVE.":host=".DBHOST.";dbname=".DBNAME, DBUSER, DBPASS);
-            $db->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
-        } catch (\PDOException $err) {
-            echo $err->getMessage();
-        }
+        $db = Connection::connect();
+
+        if ($db instanceof \PDOException) {
+            echo $db;
+        } 
 
         $sql = 'SELECT * FROM '.self::$table. 'WHERE id = :id';
         $stmt = $db->prepare($sql);
@@ -29,13 +30,22 @@ class User
         }
     }
 
-    public function getUserAll()
+    public static function getUserAll()
     {
-        try {
-            $db = new \PDO(DBDRIVE.":host=".DBHOST.";dbname=".DBNAME, DBUSER, DBPASS);
-            $db->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
-        } catch (\PDOException $err) {
-            echo $err->getMessage();
+        $db = Connection::connect();
+
+        if ($db instanceof \PDOException) {
+            echo $db;
+        }
+
+        $sql = 'SELECT * FROM '.self::$table;
+        $stmt = $db->prepare($sql);
+        $stmt->execute();
+
+        if ($stmt->rowCount() > 0) {
+            return $stmt->fetchAll(\PDO::FETCH_ASSOC);
+        } else {
+            throw new \Exception('Nenhum usuário encontrado');
         }
     }
 }
