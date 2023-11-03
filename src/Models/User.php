@@ -10,19 +10,19 @@ class User
 {
     private static $table = 'user';
 
-    public static function getUser(Int $id)
+    public static function getUser($id)
     {
         $db = Connection::connect();
-
+    
         if ($db instanceof \PDOException) {
             echo $db;
         } 
-
-        $sql = 'SELECT * FROM '.self::$table. 'WHERE id = :id';
+      
+        $sql = 'SELECT * FROM '.self::$table.' WHERE id = :id';
         $stmt = $db->prepare($sql);
-        $stmt->bindValue(':id', $id);
+        $stmt->bindParam(':id', $id, \PDO::PARAM_INT);
         $stmt->execute();
-
+    
         if ($stmt->rowCount() > 0) {
             return $stmt->fetch(\PDO::FETCH_ASSOC);
         } else {
