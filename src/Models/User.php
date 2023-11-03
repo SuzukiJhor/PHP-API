@@ -26,7 +26,7 @@ class User
         if ($stmt->rowCount() > 0) {
             return $stmt->fetch(\PDO::FETCH_ASSOC);
         } else {
-            throw new \Exception('Nenhum usuário encontrado');
+            return throw new \Exception('Nenhum usuário encontrado');
         }
     }
 

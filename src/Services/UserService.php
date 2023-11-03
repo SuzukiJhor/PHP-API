@@ -1,32 +1,36 @@
-<?php 
+<?php
 
 namespace App\Services;
 
 use App\Models\User;
 
-class UserService 
+class UserService
 {
     public function get($id = null)
     {
-        if ($id) {
-            return User::getUser($id);
-        } else {
-            return User::getUserAll();
+        try {
+            if ($id) {
+                $response = User::getUser($id);
+            } else {
+                $response = User::getUserAll();
+            }
+
+            return json_encode(array('status' => 'success', 'data' => $response));
+
+        } catch (\Exception $err) {
+            return json_encode(array('status' => 'error', 'data' => $err->getMessage()),JSON_UNESCAPED_UNICODE);
         }
     }
 
     public function post()
     {
-
     }
 
     public function update()
     {
-
     }
 
     public function delete()
     {
-
     }
 }

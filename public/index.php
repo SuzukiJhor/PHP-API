@@ -33,7 +33,6 @@ function handleApiRequest($url) {
         if ($result !== null) {
             return new Response($result, Response::HTTP_OK);
         } else {
-            var_dump($result);
             return new Response('Recurso não encontrado', Response::HTTP_NOT_FOUND);
         }
     } catch (\PDOException $err) {
