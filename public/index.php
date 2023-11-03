@@ -43,6 +43,7 @@ function handleApiRequest($url) {
 if (!isset($_SERVER['REQUEST_URI'])) {
     $response = new Response('Faltando REQUEST_URI', Response::HTTP_BAD_REQUEST);
 } else {
+    header('Content-Type: application/json');
     $url = explode('/', ltrim($_SERVER['REQUEST_URI'], '/'));
     array_shift($url);
     $response = handleApiRequest($url);
