@@ -18,12 +18,19 @@ class UserService
             return json_encode(array('status' => 'success', 'data' => $response));
 
         } catch (\Exception $err) {
-            return json_encode(array('status' => 'error', 'data' => $err->getMessage()),JSON_UNESCAPED_UNICODE);
+            return json_encode(array(
+                'status' => 'error', 
+                'data' => $err->getMessage()
+            ),JSON_UNESCAPED_UNICODE);
         }
     }
 
     public function post()
-    {
+    {   
+        $rawData = file_get_contents('php://input');
+        $jsonData = json_decode($rawData, true);
+        return json_encode(array('status' => 'success', 'data' => $jsonData));
+      
     }
 
     public function update()
