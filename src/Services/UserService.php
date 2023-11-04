@@ -29,7 +29,22 @@ class UserService
     {   
         $rawData = file_get_contents('php://input');
         $jsonData = json_decode($rawData, true);
-        return json_encode(array('status' => 'success', 'data' => $jsonData));
+
+        if (empty($jsonData)) {
+            return json_encode(array('status' => 'error', 'data' => $jsonData));
+        }
+
+        try {
+            $response = User::insert($jsonData);
+            return json_encode(array('status' => 'success', 'data' => $response));
+
+        } catch (\Exception $err) {
+            return json_encode(array(
+                'status' => 'error', 
+                'data' => $err->getMessage()
+            ),JSON_UNESCAPED_UNICODE);
+        }
+
       
     }
 
