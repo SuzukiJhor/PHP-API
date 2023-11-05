@@ -4,8 +4,6 @@ namespace App\Models;
 
 use App\Services\Connection;
 
-
-
 class User 
 {
     private static $table = 'user';
