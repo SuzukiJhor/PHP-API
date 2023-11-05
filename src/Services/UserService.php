@@ -31,7 +31,11 @@ class UserService
         $jsonData = json_decode($rawData, true);
 
         if (empty($jsonData)) {
-            return json_encode(array('status' => 'error', 'data' => $jsonData));
+            return json_encode(array(
+                'status' => 'error', 
+                'data' => $jsonData, 
+                'data2' => 'Dados enviados vazios'
+            ),JSON_UNESCAPED_UNICODE);
         }
 
         try {
@@ -44,12 +48,33 @@ class UserService
                 'data' => $err->getMessage()
             ),JSON_UNESCAPED_UNICODE);
         }
-
-      
     }
 
-    public function update()
+    public function put($id)
     {
+        $rawData = file_get_contents('php://input');
+        $jsonData = json_decode($rawData, true);
+
+        if (empty($jsonData)) {
+            return json_encode(array(
+                'status' => 'error', 
+                'data' => $jsonData, 
+                'data2' => 'Dados enviados vazios'
+            ),JSON_UNESCAPED_UNICODE);
+        }
+
+        if ($id > 0) {
+            try {
+                $response = User::update($jsonData, $id);
+                return json_encode(array('status' => 'success', 'data' => $response));
+    
+            } catch (\Exception $err) {
+                return json_encode(array(
+                    'status' => 'error', 
+                    'data' => $err->getMessage()
+                ),JSON_UNESCAPED_UNICODE);
+            }
+        }       
     }
 
     public function delete($id)
