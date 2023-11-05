@@ -55,7 +55,7 @@ class User
     
         if ($db instanceof \PDOException) {
             return $db;
-        } 
+        }
 
         if (!isset($data['name']) || empty($data['name'])) {
             return throw new \Exception('Campo nome está vazio ou indefinido');
@@ -73,6 +73,32 @@ class User
             return 'Usuário inserido com sucesso!';
         } else {
             return throw new \Exception('Falha ao inserir usuário');
+        }
+    }
+
+    public static function delete($id)
+    {
+        $db = Connection::connect();
+    
+        if ($db instanceof \PDOException) {
+            return $db;
+        }
+    
+        $user = self::getUser($id);
+
+        if (!$user) {
+            return 'Usuário não encontrado';
+        }
+        
+        $sql = 'DELETE FROM '.self::$table.' WHERE id = :id';
+        $stmt = $db->prepare($sql);
+        $stmt->bindParam(':id', $id, \PDO::PARAM_INT);
+        $stmt->execute();
+
+        if ($stmt->rowCount() > 0) {
+            return 'Usuário deletado com sucesso!';
+        } else {
+            return throw new \Exception('Falha ao deletar usuário');
         }
     }
 }

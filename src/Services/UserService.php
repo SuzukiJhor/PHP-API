@@ -52,7 +52,19 @@ class UserService
     {
     }
 
-    public function delete()
-    {
+    public function delete($id)
+    {   
+        if ($id > 0) {
+            try {
+                $response = User::delete($id);
+                return json_encode(array('status' => 'success', 'data' => $response));
+    
+            } catch (\Exception $err) {
+                return json_encode(array(
+                    'status' => 'error', 
+                    'data' => $err->getMessage()
+                ),JSON_UNESCAPED_UNICODE);
+            }
+        }
     }
 }
