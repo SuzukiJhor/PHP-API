@@ -206,7 +206,7 @@ php -S localhost:8070
 ## `📖 Dependencies` 
 
 ```JSON
-  require": {
+  "require": {
         "symfony/http-foundation": "^6.3"
     }
 
