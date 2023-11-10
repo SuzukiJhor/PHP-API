@@ -7,7 +7,7 @@ Api desenvolvida em PHP utilizando Mysql como banco de dados!;
  - Exclusão de usuários;
 
 
-### ⠀🛡️ Api desenvolvida em Node.js utilizando Mysql como banco de dados!; 
+### ⠀🛡️ Api desenvolvida em PHP utilizando Mysql como banco de dados!; 
 
 
 ### 🎯 BUSCAR TODOS OS USUARIOS.
