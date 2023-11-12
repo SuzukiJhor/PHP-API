@@ -137,11 +137,8 @@ http://localhost:8070/api/user/ID
 ```
 <br /> 
 
-
-## `📖 Instalação` 
-
 ## 🧪 Dependências
-> Requisitos para rotar o codigo..
+> Requisitos para rodar o codigo..
 
  ###  💻 PRÉ-REQUISITOS
 
