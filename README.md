@@ -186,18 +186,6 @@ DB_DATABASE=seu-banco-de-dados
 php -S localhost:8070 
 ```
 
-<br /> 
-
-## `📖 Scripts` 
-
-```JSON
-  "scripts": {
-    "start": "nodemon ./src/server.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
-  }
-
-```
-
 <br/>
 
 ## `📖 Dependencies` 
