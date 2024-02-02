@@ -8,7 +8,7 @@ class User
 {
     private static $table = 'user';
 
-    public static function getUser($id)
+    public static function getUser(int $id)
     {
         $db = Connection::connect();
     
